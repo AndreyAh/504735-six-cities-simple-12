@@ -1,4 +1,4 @@
-import {Helmet} from 'react-helmet-async';
+import {Helmet} from 'react-helmet';
 import {Link} from 'react-router-dom';
 import Logo from '../../components/logo/logo';
 
@@ -6,7 +6,7 @@ function LoginPage(): JSX.Element {
   return (
     <body>
       <Helmet>
-        <title>Страница авторизации.</title>
+        <title>Authorization page.</title>
       </Helmet>
       <div className="page page--gray page--login">
         <div style={{ display: 'none' }}>
