@@ -29,7 +29,7 @@ function App({numberOfOffers, offers, reviews}: AppScreenProps): JSX.Element {
           />
           <Route
             path={AppRoute.Offer}
-            element={<OfferPage reviews={reviews} />}
+            element={<OfferPage reviews={reviews} offers = {offers}/>}
           />
           <Route
             path="*"
