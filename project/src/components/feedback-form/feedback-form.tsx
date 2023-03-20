@@ -1,17 +1,11 @@
-// import {useState} from 'react';
-
-// type FeedbackFormProps = {
-//   value: string;
-// }
+import {ChangeEvent, useState} from 'react';
 
 function FeedbackForm(): JSX.Element {
+  const [formData, setFormData] = useState('');
 
-  // const [formData, setFormData] = useState('');
-
-  // // const fieldChangeHandle = (evt) => {
-  // //   const {value} = evt.target;
-  // //   setFormData({...formData, value});
-  // // };
+  const fieldChangeHandle = ({target}: ChangeEvent<HTMLTextAreaElement>) => {
+    setFormData(target.value);
+  };
 
   return (
     <form className="reviews__form form" action="#" method="post">
@@ -53,7 +47,7 @@ function FeedbackForm(): JSX.Element {
         </label>
       </div>
       {/* placeholder="Tell how was your stay, what you like and what can be improved" */}
-      <textarea className="reviews__textarea form__textarea" id="review" name="review" /*onChange={fieldChangeHandle}*/></textarea>
+      <textarea className="reviews__textarea form__textarea" id="review" name="review" onChange={fieldChangeHandle} placeholder="Tell how was your stay, what you like and what can be improved" value={formData}></textarea>
       <div className="reviews__button-wrapper">
         <p className="reviews__help">
           To submit review please make sure to set <span className="reviews__star">rating</span> and describe your stay with at least <b className="reviews__text-amount">50 characters</b>.

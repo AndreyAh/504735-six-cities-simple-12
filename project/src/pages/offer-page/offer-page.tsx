@@ -2,9 +2,16 @@ import {Helmet} from 'react-helmet';
 import {Link} from 'react-router-dom';
 import Logo from '../../components/logo/logo';
 import FeedbackForm from '../../components/feedback-form/feedback-form';
+import {Reviews} from '../../types/review';
+import {Offers} from '../../types/offer';
 // import {useParams} from 'react-router-dom';
 
-function OfferPage(): JSX.Element {
+type OfferPageProps = {
+  offers: Offers;
+  reviews: Reviews;
+}
+
+function OfferPage({offers, reviews}: OfferPageProps): JSX.Element {
   // const params = useParams();
   // eslint-disable-next-line no-console
   // console.log(params);
@@ -183,7 +190,7 @@ function OfferPage(): JSX.Element {
                       </div>
                     </li>
                   </ul>
-                  <FeedbackForm/>
+                  <FeedbackForm />
                 </section>
               </div>
             </div>

@@ -1,17 +1,25 @@
-import {Offers} from '../../types/offer';
+import {Offer} from '../../types/offer';
 import {useState} from 'react';
 import {MouseEvent} from 'react';
 // import {useNavigate} from 'react-router-dom';
 import {Link} from 'react-router-dom';
 // import {AppRoute} from '../../const';
 
+
 type OfferCardProps = {
-  offers: Offers;
+  offer: Offer;
 };
 
-function OfferCard(props: OfferCardProps): JSX.Element {
-  const {offers} = props;
-  const {isPremium, price, rating, type, title, images, id} = offers[0];
+function OfferCard({ offer }: OfferCardProps): JSX.Element {
+  const { isPremium, price, rating, type, title, images, id } = offer;
+
+  // type OfferCardProps = {
+  //   offers: Offers;
+  // };
+
+  // function OfferCard(props: OfferCardProps): JSX.Element {
+  //   const {offers} = props;
+  //   const {isPremium, price, rating, type, title, images, id} = offers[0];
 
   const [, setActiveOffer] = useState(0);
   // eslint-disable-next-line no-console

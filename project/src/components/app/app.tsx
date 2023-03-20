@@ -1,4 +1,4 @@
-import { Route, BrowserRouter, Routes } from 'react-router-dom';
+import {Route, BrowserRouter, Routes} from 'react-router-dom';
 import {AppRoute} from '../../const';
 import LoginPage from '../../pages/login-page/login-page';
 import MainPage from '../../pages/main-page/main-page';
@@ -6,13 +6,15 @@ import OfferPage from '../../pages/offer-page/offer-page';
 import Page404 from '../../pages/page-404/page-404';
 import {HelmetProvider} from 'react-helmet-async';
 import {Offers} from '../../types/offer';
+import {Reviews} from '../../types/review';
 
 type AppScreenProps = {
   numberOfOffers: number;
   offers: Offers;
+  reviews: Reviews;
 }
 
-function App({numberOfOffers, offers}: AppScreenProps): JSX.Element {
+function App({numberOfOffers, offers, reviews}: AppScreenProps): JSX.Element {
   return (
     <HelmetProvider>
       <BrowserRouter>
@@ -27,7 +29,7 @@ function App({numberOfOffers, offers}: AppScreenProps): JSX.Element {
           />
           <Route
             path={AppRoute.Offer}
-            element={<OfferPage />}
+            element={<OfferPage reviews={reviews} />}
           />
           <Route
             path="*"
