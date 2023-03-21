@@ -13,14 +13,14 @@ type OfferPageProps = {
 }
 
 function OfferPage({ offers, reviews }: OfferPageProps): JSX.Element {
-  const {id} = useParams();
+  const { id } = useParams();
   const offer = offers.find((item) => item.id === Number(id));
 
   if (offer === undefined) {
     return <div></div>;
   }
 
-  const { bedrooms, description, goods, host, isPremium, images, price, rating, type, maxAdults } = offer;
+  const { bedrooms, description, goods, isPremium, price, rating, type, maxAdults } = offer;
   return (
     <body>
       <Helmet>
@@ -118,11 +118,13 @@ function OfferPage({ offers, reviews }: OfferPageProps): JSX.Element {
                   <h2 className="property__inside-title">What&apos;s inside</h2>
                   <ul className="property__inside-list">
                     {goods.map((good) =>
-                      (<React.Fragment key={good}>
-                        <li key={good} className="property__inside-item">
-                          {good}
-                        </li>
-                      </React.Fragment>)
+                      (
+                        <React.Fragment key={good}>
+                          <li key={good} className="property__inside-item">
+                            {good}
+                          </li>
+                        </React.Fragment>
+                      )
                     )}
                   </ul>
                 </div>
