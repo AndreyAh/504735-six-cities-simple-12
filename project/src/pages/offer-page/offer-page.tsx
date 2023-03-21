@@ -1,21 +1,26 @@
-import {Helmet} from 'react-helmet';
-import {Link} from 'react-router-dom';
+import { Helmet } from 'react-helmet';
+import { Link } from 'react-router-dom';
 import Logo from '../../components/logo/logo';
 import FeedbackForm from '../../components/feedback-form/feedback-form';
-import {Reviews} from '../../types/review';
-import {Offers} from '../../types/offer';
-// import {useParams} from 'react-router-dom';
+import { Reviews } from '../../types/review';
+import { Offers } from '../../types/offer';
+import { useParams } from 'react-router-dom';
+import React from 'react';
 
 type OfferPageProps = {
   offers: Offers;
   reviews: Reviews;
 }
 
-function OfferPage({offers, reviews}: OfferPageProps): JSX.Element {
-  // const params = useParams();
-  // eslint-disable-next-line no-console
-  // console.log(params);
+function OfferPage({ offers, reviews }: OfferPageProps): JSX.Element {
+  const {id} = useParams();
+  const offer = offers.find((item) => item.id === Number(id));
 
+  if (offer === undefined) {
+    return <div></div>;
+  }
+
+  const { bedrooms, description, goods, host, isPremium, images, price, rating, type, maxAdults } = offer;
   return (
     <body>
       <Helmet>
@@ -77,69 +82,48 @@ function OfferPage({offers, reviews}: OfferPageProps): JSX.Element {
             </div>
             <div className="property__container container">
               <div className="property__wrapper">
-                <div className="property__mark">
-                  <span>Premium</span>
-                </div>
+                {isPremium ?
+                  <div className="property__mark">
+                    <span>Premium</span>
+                  </div> :
+                  null}
                 <div className="property__name-wrapper">
                   <h1 className="property__name">
-                    Beautiful &amp; luxurious studio at great location
+                    {description}
                   </h1>
                 </div>
                 <div className="property__rating rating">
                   <div className="property__stars rating__stars">
                     <span style={{ width: '80%' }}></span>
-                    <span className="visually-hidden">Rating</span>
+                    <span className="visually-hidden">Raiting</span>
                   </div>
-                  <span className="property__rating-value rating__value">4.8</span>
+                  <span className="property__rating-value rating__value">{rating}</span>
                 </div>
                 <ul className="property__features">
                   <li className="property__feature property__feature--entire">
-                    Apartment
+                    {type}
                   </li>
                   <li className="property__feature property__feature--bedrooms">
-                    3 Bedrooms
+                    {bedrooms} Bedrooms
                   </li>
                   <li className="property__feature property__feature--adults">
-                    Max 4 adults
+                    Max {maxAdults} adults
                   </li>
                 </ul>
                 <div className="property__price">
-                  <b className="property__price-value">&euro;120</b>
+                  <b className="property__price-value">&euro;{price}</b>
                   <span className="property__price-text">&nbsp;night</span>
                 </div>
                 <div className="property__inside">
                   <h2 className="property__inside-title">What&apos;s inside</h2>
                   <ul className="property__inside-list">
-                    <li className="property__inside-item">
-                      Wi-Fi
-                    </li>
-                    <li className="property__inside-item">
-                      Washing machine
-                    </li>
-                    <li className="property__inside-item">
-                      Towels
-                    </li>
-                    <li className="property__inside-item">
-                      Heating
-                    </li>
-                    <li className="property__inside-item">
-                      Coffee machine
-                    </li>
-                    <li className="property__inside-item">
-                      Baby seat
-                    </li>
-                    <li className="property__inside-item">
-                      Kitchen
-                    </li>
-                    <li className="property__inside-item">
-                      Dishwasher
-                    </li>
-                    <li className="property__inside-item">
-                      Cabel TV
-                    </li>
-                    <li className="property__inside-item">
-                      Fridge
-                    </li>
+                    {goods.map((good) =>
+                      (<React.Fragment key={good}>
+                        <li key={good} className="property__inside-item">
+                          {good}
+                        </li>
+                      </React.Fragment>)
+                    )}
                   </ul>
                 </div>
                 <div className="property__host">

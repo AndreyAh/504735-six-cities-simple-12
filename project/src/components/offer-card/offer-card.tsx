@@ -1,9 +1,7 @@
 import {Offer} from '../../types/offer';
 import {useState} from 'react';
 import {MouseEvent} from 'react';
-// import {useNavigate} from 'react-router-dom';
 import {Link} from 'react-router-dom';
-// import {AppRoute} from '../../const';
 
 
 type OfferCardProps = {
@@ -11,22 +9,12 @@ type OfferCardProps = {
 };
 
 function OfferCard({ offer }: OfferCardProps): JSX.Element {
-  const { isPremium, price, rating, type, title, images, id } = offer;
-
-  // type OfferCardProps = {
-  //   offers: Offers;
-  // };
-
-  // function OfferCard(props: OfferCardProps): JSX.Element {
-  //   const {offers} = props;
-  //   const {isPremium, price, rating, type, title, images, id} = offers[0];
+  const {isPremium, price, rating, type, title, images, id} = offer;
 
   const [, setActiveOffer] = useState(0);
-  // eslint-disable-next-line no-console
-  // console.log(activeOffer);
 
   const mouseOverHandler = (evt: MouseEvent<Element>) => {
-    setActiveOffer(id);////!!!!!
+    setActiveOffer(id);
   };
 
   return (
@@ -37,7 +25,7 @@ function OfferCard({ offer }: OfferCardProps): JSX.Element {
         </div> :
         null}
       <div className="cities__image-wrapper place-card__image-wrapper">
-        <Link to='/offers/:id'>
+        <Link to={`/offers/${id}`}>
           <img className="place-card__image" src={images[0]} width="260" height="200" alt="PlaceImage" />
         </Link>
       </div>
@@ -56,7 +44,7 @@ function OfferCard({ offer }: OfferCardProps): JSX.Element {
           </div>
         </div>
         <h2 className="place-card__name">
-          <Link to='/offers/:id' >{title}</Link>
+          <Link to={`/offers/${id}`} >{title}</Link>
         </h2>
         <p className="place-card__type">{type}</p>
       </div>
